@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}AppBundle:Article:create{% endblock %}
+{% block title %}Créer ou modifier un article{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Article:create page</h1>
+<h1>Créer ou modifier un article</h1>
+{{form_start(form)}}
+{{form_widget(form)}}
+<button type="submit">Valider</button>
+{{form_end(form)}}
 {% endblock %}
