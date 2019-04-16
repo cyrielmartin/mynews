@@ -15,7 +15,7 @@ class ArticleController extends Controller
      */
     public function showAction()
     {
-        $articles = $this->getDoctrine()->getRepository('AppBundle:Article')->findAll();
+        $articles = $this->getDoctrine()->getRepository('AppBundle:Article')->findArticlesOrderByDateDesc();
 
         return $this->render('Article/show.html.twig', array(
             'articles' => $articles,

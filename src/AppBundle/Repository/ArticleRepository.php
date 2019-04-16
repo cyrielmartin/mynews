@@ -10,4 +10,12 @@ namespace AppBundle\Repository;
  */
 class ArticleRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findArticlesOrderByDateDesc()
+    {
+        return $this
+        ->createQueryBuilder('article')
+        ->orderBy('article.publishedAt', 'desc')
+        ->getQuery()
+        ->getResult();
+    }
 }
