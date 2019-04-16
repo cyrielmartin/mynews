@@ -6,7 +6,7 @@
 <a href="/new"><button>Créer un article</button></a>
 <h1>Tous les articles</h1>
 {% for article in articles %}
-<p><a href="article/{{article.id}}">{{article.title}}</a><p>
+<p><a href="article/{{article.id}}">{{article.title}}</a> <a href="edit/{{article.id}}">Modifier</a><p>
 
 {% endfor %}
 

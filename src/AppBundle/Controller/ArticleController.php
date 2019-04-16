@@ -65,10 +65,29 @@ class ArticleController extends Controller
     /**
      * @Route("/edit/{id}")
      */
-    public function editAction($id)
+    public function editAction(Request $request, $id)
     {
-        return $this->render('AppBundle:Article:edit.html.twig', array(
-            // ...
+        $em = $this->getDoctrine()->getManager();
+        $article = $em->getRepository('AppBundle:Article')->find($id);
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
+
+        if (!$article) {
+            throw $this->createNotFoundException(
+                'Aie aie Aie'
+            );
+        }
+        
+        if ($form->isSubmitted()&& $form->isValid()) {
+            $article = $form->getData();
+            $em->persist($article);
+            $em->flush();
+
+            return $this->redirect('/');
+        }
+
+        return $this->render('Article/create.html.twig', array(
+            'form' => $form->createView(),
         ));
     }
 
