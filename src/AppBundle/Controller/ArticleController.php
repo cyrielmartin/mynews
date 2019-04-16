@@ -96,9 +96,19 @@ class ArticleController extends Controller
      */
     public function deleteAction($id)
     {
-        return $this->render('AppBundle:Article:delete.html.twig', array(
-            // ...
-        ));
+        $em = $this->getDoctrine()->getManager();
+        $article = $em->getRepository('AppBundle:Article')->find($id);
+
+        if (!$article){
+            throw $this->createNotFoundException(
+                'Aie aie aie'
+            );
+        }
+
+        $em->remove($article);
+        $em->flush();
+
+        return $this->redirect('/');
     }
 
 }
