@@ -5,6 +5,8 @@
 {% block body %}
 <h1>{{article.title}}</h1>
 <h2>Par {{article.author}}</h2>
+<small>Publié le {{article.publishedAt|date('d/m/y') }}</small>
 <p>{{article.content}}</p>
-<small>{{article.publishedAt}}</small>
+
+<p><a href="/"><button>Retour</button></a></p>
 {% endblock %}
