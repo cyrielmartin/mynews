@@ -12,8 +12,10 @@ class ArticleController extends Controller
      */
     public function showAction()
     {
+        $articles = $this->getDoctrine()->getRepository('AppBundle:Article')->findAll();
+
         return $this->render('Article/show.html.twig', array(
-            // ...
+            'articles' => $articles,
         ));
     }
 
@@ -22,8 +24,15 @@ class ArticleController extends Controller
      */
     public function viewAction($id)
     {
-        return $this->render('AppBundle:Article:view.html.twig', array(
-            // ...
+        $article = $this->getDoctrine()->getRepository('AppBundle:Article')->find($id);
+
+        if (!$article) {
+            throw $this->createNotFoundException(
+                'Cet article n\'existe pas'
+            );
+        }        
+        return $this->render('Article/view.html.twig', array(
+            'article' => $article
         ));
     }
 

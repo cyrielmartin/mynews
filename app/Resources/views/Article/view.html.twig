@@ -1,7 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}AppBundle:Article:view{% endblock %}
+{% block title %}Article{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Article:view page</h1>
+<h1>{{article.title}}</h1>
+<h2>Par {{article.author}}</h2>
+<p>{{article.content}}</p>
+<small>{{article.publishedAt}}</small>
 {% endblock %}
